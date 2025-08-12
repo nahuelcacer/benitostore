@@ -24,7 +24,10 @@ class ProductoViewSet(viewsets.ModelViewSet):
     ordering = ['-fecha_creado']
     
     def perform_create(self, serializer):
-        serializer.save()
+        producto = serializer.save()
+        # Crear inventario asociado al producto
+        from inventario.models import Inventario
+        Inventario.objects.create(producto=producto, cantidad=0)
     
     @action(detail=False, methods=['get'])
     def activos(self, request):

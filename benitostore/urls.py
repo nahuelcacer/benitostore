@@ -16,8 +16,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from productos.views import ProductoViewSet, CategoriaViewSet
+from inventario.views import InventarioViewSet, MovimientoInventarioViewSet
+
+# Unificar todos los viewsets en un solo router
+router = DefaultRouter()
+router.register(r'productos', ProductoViewSet, basename='producto')
+router.register(r'categorias', CategoriaViewSet, basename='categoria')
+router.register(r'inventario', InventarioViewSet, basename='inventario')
+router.register(r'movimiento-inventario', MovimientoInventarioViewSet, basename='movimiento-inventario')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('productos.urls')),
+    path('api/', include(router.urls)),
 ]
