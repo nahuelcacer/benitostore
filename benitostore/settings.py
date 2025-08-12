@@ -11,9 +11,11 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 # Quick-start development settings - unsuitable for production
@@ -40,7 +42,12 @@ INSTALLED_APPS = [
     'rest_framework',  # Django REST Framework for API support
     'productos',  # Your app for managing products
     'inventario',  # Your app for managing inventory
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -50,7 +57,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware'
 ]
+
+SOCIALACCOUNT_STORE_TOKENS = True
 
 ROOT_URLCONF = 'benitostore.urls'
 
@@ -127,5 +137,10 @@ REST_FRAMEWORK = {
         'rest_framework.filters.OrderingFilter',
     ],
 }
+
+SITE_ID = 1
+LOGIN_REDIRECT_URL = '/'  # A dónde ir después del login
+LOGOUT_REDIRECT_URL = '/' 
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
