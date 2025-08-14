@@ -17,7 +17,6 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import RegisterViewSet
 from productos.views import ProductoViewSet, CategoriaViewSet
 from inventario.views import InventarioViewSet, MovimientoInventarioViewSet
 
@@ -30,7 +29,5 @@ router.register(r'movimiento-inventario', MovimientoInventarioViewSet, basename=
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls)),
-    path('auth/register/', RegisterViewSet.as_view({'post': 'create'}), name='auth-register'),
-    # path('accounts/', include('allauth.urls')),
+    path('api/', include(router.urls))
 ]

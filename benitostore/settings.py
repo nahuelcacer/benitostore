@@ -40,12 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',  # Django REST Framework for API support
+    'rest_framework.authtoken',  # Token authentication
+    'dj_rest_auth',  # Django REST Auth for user management
     'productos',  # Your app for managing products
     'inventario',  # Your app for managing inventory
-    # 'allauth',
-    # 'allauth.account',
-    # 'allauth.socialaccount',
-    # 'allauth.socialaccount.providers.google',
+  
 ]
 
 
@@ -57,7 +56,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'allauth.account.middleware.AccountMiddleware'
 ]
 
 SOCIALACCOUNT_STORE_TOKENS = True
@@ -131,16 +129,16 @@ STATIC_URL = 'static/'
 
 
 # Configuración global de Django REST Framework
-REST_FRAMEWORK = {
-    'DEFAULT_FILTER_BACKENDS': [
-        'rest_framework.filters.SearchFilter',
-        'rest_framework.filters.OrderingFilter',
-    ],
+
+REST_AUTH = { 
+    'USE_JWT': True,  # Usar JWT para autenticación
+    'JWT_AUTH_COOKIE': 'djangoauth_cookie',  # Nombre de la cookie para el token JWT
+    'JWT_AUTH_REFRESH_COOKIE': 'djangoauth_refresh_cookie',  # Nombre de la cookie para el token de refresco
 }
-
-SITE_ID = 1
-LOGIN_REDIRECT_URL = '/'  # A dónde ir después del login
-LOGOUT_REDIRECT_URL = '/' 
-
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
+    )
+}
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
