@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'dj_rest_auth',  # Django REST Auth for user management
     'productos',  # Your app for managing products
     'inventario',  # Your app for managing inventory
+    'userauth',  # Your app for user authentication and profiles
   
 ]
 
