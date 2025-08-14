@@ -30,5 +30,6 @@ router.register(r'movimiento-inventario', MovimientoInventarioViewSet, basename=
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
+    # path('dj-rest-auth/', include('dj_rest_auth.urls')),
     path('api/auth/', include('userauth.urls'))
 ]

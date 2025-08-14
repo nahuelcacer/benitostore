@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from rest_framework import viewsets, filters
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import action
 from rest_framework.response import Response
 # from django_filters.rest_framework import DjangoFilterBackend
@@ -7,9 +8,11 @@ from .models import Producto, Categoria
 from .serializers import ProductoSerializer, CategoriaSerializer
 
 # Create your views here.
+#solo se puede usar si esta autenticado
 class CategoriaViewSet(viewsets.ModelViewSet):
     queryset = Categoria.objects.all()
     serializer_class = CategoriaSerializer
+    permission_classes = [IsAuthenticated]
     search_fields = ['nombre', 'descripcion']
     ordering_fields = ['nombre']
     ordering = ['nombre']
