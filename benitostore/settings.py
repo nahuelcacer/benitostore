@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'productos',  # Your app for managing products
     'inventario',  # Your app for managing inventory
     'userauth',  # Your app for user authentication and profiles
-  
+    'pedidos',  # Your app for managing orders
 ]
 
 

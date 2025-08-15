@@ -26,10 +26,13 @@ router.register(r'productos', ProductoViewSet, basename='producto')
 router.register(r'categorias', CategoriaViewSet, basename='categoria')
 router.register(r'inventario', InventarioViewSet, basename='inventario')
 router.register(r'movimiento-inventario', MovimientoInventarioViewSet, basename='movimiento-inventario')
+# router.register(r'pedidos', include('pedidos.urls'))
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
+    path('api/', include('pedidos.urls')),
+
     # path('dj-rest-auth/', include('dj_rest_auth.urls')),
     path('api/auth/', include('userauth.urls'))
 ]
