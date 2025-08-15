@@ -27,6 +27,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'inseguro-en-dev')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+PORT = int(os.environ.get("PORT", 8000))
 
 ALLOWED_HOSTS = ['*', '.up.railway.app']
 
