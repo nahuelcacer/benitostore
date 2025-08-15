@@ -29,7 +29,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'inseguro-en-dev')
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 PORT = int(os.environ.get("PORT", 8000))
 
-ALLOWED_HOSTS = ['*', '.up.railway.app']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
