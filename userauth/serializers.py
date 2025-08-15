@@ -1,11 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import DatosEnvio
-class DatosEnvioSerializer(serializers.ModelSerializer):
 
-    class Meta:
-        model = DatosEnvio
-        fields = ('direccion', 'ciudad', 'codigo_postal')
 
 class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
