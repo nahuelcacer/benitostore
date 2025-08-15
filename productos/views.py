@@ -20,6 +20,7 @@ class CategoriaViewSet(viewsets.ModelViewSet):
 class ProductoViewSet(viewsets.ModelViewSet):
     queryset = Producto.objects.all()
     serializer_class = ProductoSerializer   
+    permission_classes = [IsAuthenticated]
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     # filterset_fields = ['categoria', 'activo']  # Requiere django-filter
     search_fields = ['nombre', 'descripcion']
