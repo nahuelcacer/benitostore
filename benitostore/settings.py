@@ -22,12 +22,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-z9tm5xv)smo8&jy%rh$1^1hp0b2r$0ur%(e^oiqso%b5&lqn-3'
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'inseguro-en-dev')
+SECRET_KEY = 'django-insecure-z9tm5xv)smo8&jy%rh$1^1hp0b2r$0ur%(e^oiqso%b5&lqn-3'
+# SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'inseguro-en-dev')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'False') == 'True'
-PORT = int(os.environ.get("PORT", 8000))
+# DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -85,16 +84,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'benitostore.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-
-DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get("DATABASE_URL"),
-        conn_max_age=600,
-        ssl_require=True
-    )
-}
 
 
 # Password validation
