@@ -19,20 +19,18 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from productos.views import ProductoViewSet, CategoriaViewSet
 from inventario.views import InventarioViewSet, MovimientoInventarioViewSet
+from pedidos.urls import router as pedidos_router
+from productos.urls import router as productos_router
+from inventario.urls import router as inventario_router
 
-# Unificar todos los viewsets en un solo router
 router = DefaultRouter()
-router.register(r'productos', ProductoViewSet, basename='producto')
-router.register(r'categorias', CategoriaViewSet, basename='categoria')
-router.register(r'inventario', InventarioViewSet, basename='inventario')
-router.register(r'movimiento-inventario', MovimientoInventarioViewSet, basename='movimiento-inventario')
-# router.register(r'pedidos', include('pedidos.urls'))
+router.registry.extend(pedidos_router.registry)
+router.registry.extend(productos_router.registry)
+router.registry.extend(inventario_router.registry)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
-    path('api/', include('pedidos.urls')),
-
-    # path('dj-rest-auth/', include('dj_rest_auth.urls')),
     path('api/auth/', include('userauth.urls'))
 ]

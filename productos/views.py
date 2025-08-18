@@ -12,7 +12,7 @@ from .serializers import ProductoSerializer, CategoriaSerializer
 class CategoriaViewSet(viewsets.ModelViewSet):
     queryset = Categoria.objects.all()
     serializer_class = CategoriaSerializer
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     search_fields = ['nombre', 'descripcion']
     ordering_fields = ['nombre']
     ordering = ['nombre']
@@ -20,7 +20,7 @@ class CategoriaViewSet(viewsets.ModelViewSet):
 class ProductoViewSet(viewsets.ModelViewSet):
     queryset = Producto.objects.all()
     serializer_class = ProductoSerializer   
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     # filterset_fields = ['categoria', 'activo']  # Requiere django-filter
     search_fields = ['nombre', 'descripcion']
