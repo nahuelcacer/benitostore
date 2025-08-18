@@ -20,7 +20,11 @@ class CategoriaViewSet(viewsets.ModelViewSet):
 class ProductoViewSet(viewsets.ModelViewSet):
     queryset = Producto.objects.all()
     serializer_class = ProductoSerializer   
-    # permission_classes = [IsAuthenticated]
+    def get_permissions(self):
+        from rest_framework.permissions import IsAuthenticated, AllowAny
+        if self.action in ['list', 'retrieve', 'activos', 'por_categoria']:
+            return [AllowAny()]
+        return [IsAuthenticated()]
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     # filterset_fields = ['categoria', 'activo']  # Requiere django-filter
     search_fields = ['nombre', 'descripcion']
