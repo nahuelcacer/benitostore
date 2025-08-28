@@ -9,6 +9,7 @@ class Categoria(models.Model):
 class Producto(models.Model):
     nombre = models.CharField(max_length=100, unique=True)
     descripcion = models.TextField(blank=True, null=True)
+    precio_lista = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     precio = models.DecimalField(max_digits=10, decimal_places=2)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name='productos')
     costo = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
