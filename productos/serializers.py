@@ -2,10 +2,17 @@ from rest_framework import serializers
 from .models import Producto, Categoria
 
 
+
 class CategoriaSerializer(serializers.ModelSerializer):
+    subcategorias = serializers.SerializerMethodField()
+
     class Meta:
         model = Categoria
-        fields = '__all__'
+        fields = ['id', 'nombre', 'descripcion', 'categoria_padre', 'subcategorias']
+
+    def get_subcategorias(self, obj):
+        children = Categoria.objects.filter(categoria_padre=obj.id)
+        return CategoriaSerializer(children, many=True).data
 
 
 class ProductoSerializer(serializers.ModelSerializer):
