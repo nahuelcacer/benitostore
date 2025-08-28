@@ -10,7 +10,7 @@ from .serializers import ProductoSerializer, CategoriaSerializer
 # Create your views here.
 #solo se puede usar si esta autenticado
 class CategoriaViewSet(viewsets.ModelViewSet):
-    queryset = Categoria.objects.all()
+    queryset = Categoria.objects.filter(categoria_padre=None)
     serializer_class = CategoriaSerializer
     # permission_classes = [IsAuthenticated]
     search_fields = ['nombre', 'descripcion']
